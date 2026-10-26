@@ -1,6 +1,10 @@
 import https from 'https';
 import httpProxy from 'http-proxy';
 
+import fs from 'fs';
+
+import path from 'path';
+
 const proxy = httpProxy.createProxyServer();
 
 proxy.on('error', (err, req, res) => {
