@@ -5,5 +5,7 @@
     "http-proxy": "^1.18.1",
     "https": "^1.0.0",
     "path": "^0.12.7"
-  }
+  },
+    "type": "module"
+
 }
