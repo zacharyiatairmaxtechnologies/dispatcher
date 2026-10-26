@@ -37,7 +37,7 @@ https.createServer(options, (req, res) => {
 
         case 'airmax-reports.airmaxtechnologies.com':
             proxy.web(req, res, {
-                target: 'http://localhost:8080'
+                target: 'http://localhost:80'
             });
             break;
 
