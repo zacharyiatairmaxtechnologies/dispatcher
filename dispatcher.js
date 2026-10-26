@@ -19,9 +19,9 @@ proxy.on('error', (err, req, res) => {
 const __dirname = 'c:/SSL Certs/pem';
 
 const options = {
-    key: fs.readFileSync(path.join(__dirname,'_.airmaxtechnologies.com-key.pem')),
-    cert: fs.readFileSync(path.join(__dirname,'_.airmaxtechnologies.com-crt.pem')),
-    ca: fs.readFileSync(path.join(__dirname,'_.airmaxtechnologies.com-chain-only.pem'))
+    key: fs.readFileSync(path.join(__dirname, '_.airmaxtechnologies.com-key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, '_.airmaxtechnologies.com-crt.pem')),
+    ca: fs.readFileSync(path.join(__dirname, '_.airmaxtechnologies.com-chain-only.pem'))
 };
 
 
@@ -31,7 +31,9 @@ https.createServer(options, (req, res) => {
     switch (host) {
         case 'whse.airmaxtechnologies.com':
             proxy.web(req, res, {
-                target: 'http://localhost:8083'
+                target: 'https://localhost:8083',
+                secure: false,
+                changeOrigin: false
             });
             break;
 
