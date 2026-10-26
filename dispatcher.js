@@ -1,9 +1,18 @@
+import http from 'http';
+
 import https from 'https';
 import httpProxy from 'http-proxy';
 
 import fs from 'fs';
 
 import path from 'path';
+
+http.createServer((req, res) => {
+    res.writeHead(301, {
+        Location: `https://${req.headers.host}${req.url}`
+    });
+    res.end();
+}).listen(80);
 
 const proxy = httpProxy.createProxyServer();
 
