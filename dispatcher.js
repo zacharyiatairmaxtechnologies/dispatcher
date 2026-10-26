@@ -34,7 +34,7 @@ const options = {
 };
 
 
-https.createServer(options, (req, res) => {
+const server  = https.createServer(options, (req, res) => {
     const host = req.headers.host?.split(':')[0];
 
     switch (host) {
@@ -56,12 +56,8 @@ https.createServer(options, (req, res) => {
             res.writeHead(404);
             res.end('Unknown host');
     }
-}).listen(443);
+})
 
-
-const server = https.createServer(options, (req, res) => {
-    // your existing switch
-});
 
 server.on('upgrade', (req, socket, head) => {
     const host = req.headers.host?.split(':')[0];
