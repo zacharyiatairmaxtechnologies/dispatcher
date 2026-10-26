@@ -57,3 +57,33 @@ https.createServer(options, (req, res) => {
             res.end('Unknown host');
     }
 }).listen(443);
+
+
+const server = https.createServer(options, (req, res) => {
+    // your existing switch
+});
+
+server.on('upgrade', (req, socket, head) => {
+    const host = req.headers.host?.split(':')[0];
+
+    switch (host) {
+        case 'whse.airmaxtechnologies.com':
+            proxy.ws(req, socket, head, {
+                target: 'https://localhost:8083',
+                secure: false,
+                changeOrigin: false
+            });
+            break;
+
+        case 'airmax-reports.airmaxtechnologies.com':
+            proxy.ws(req, socket, head, {
+                target: 'http://localhost:8082'
+            });
+            break;
+
+        default:
+            socket.destroy();
+    }
+});
+
+server.listen(443);
